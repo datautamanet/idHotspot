@@ -1,0 +1,33 @@
+<section>
+  <form class="signin form-horizontal">
+    <div class="flex-grid grid flex-content-center">
+      <div class="row flex-dir-row flex-wrap cells2">
+        <div class="row flex-just-center">
+          <div class="form-group">
+            <img ng-src="{{vm.imageURL}}" alt="{{vm.user.displayName}}" class="img-thumbnail user-profile-picture">
+          </div>
+        </div>
+        <div class="row flex-just-center">
+          <div class="form-group input-control file" data-role="input" ng-hide="vm.uploader.queue.length">
+            <input type="file" nv-file-select uploader="vm.uploader" >
+            <button class="button"><span class="mif-folder"></span></button>
+          </div>
+        </div>
+        <div class="row flex-just-center">
+          <div class="form-group" ng-show="vm.uploader.queue.length">
+            <button class="button primary" ng-click="vm.uploadProfilePicture();">Upload</button>
+            <button class="button default" ng-click="vm.cancelUpload();">Cancel</button>
+          </div>
+        </div>
+        <div class="row flex-just-center">
+          <div ng-show="vm.success" class="fg-lime">
+            <strong>Profile Picture Changed Successfully</strong>
+          </div>
+          <div ng-show="vm.error" class="fg-crimson">
+            <strong ng-bind="vm.error"></strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</section>

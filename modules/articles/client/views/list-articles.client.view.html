@@ -1,0 +1,56 @@
+<section>
+  <h1 class="text-light">Daftar Artikel <span class="mif-stack place-right"></span></h1>
+  <hr class="thin bg-grayLighter">
+  <span data-role="hint"
+        data-hint-background="bg-blue"
+        data-hint-color="fg-white"
+        data-hint-mode="2"
+        data-hint="Buat artikel baru"
+        data-hint-position="top"
+        data-hint-timeout="2000"
+  ><button class="button primary" ui-sref="articles.create"><b class="mif-plus"></b></button></span>
+  <hr class="thin bg-grayLighter">
+  <table class="border row-border hovered striped" datatable="ng" data-auto-width="false">
+    <thead>
+    <tr>
+      <td style="width: 20px">
+      </td>
+      <td class="sortable-column">Judul</td>
+      <td class="sortable-column" style="width: 150px">Tgl Rilis</td>
+      <td class="sortable-column">Penulis</td>
+      <td style="width: 100px"></td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="article in vm.articles">
+      <td>
+        <label class="input-control checkbox small-check no-margin">
+          <input type="checkbox">
+          <span class="check"></span>
+        </label>
+      </td>
+      <td ng-bind="article.title"></td>
+      <td ng-bind="article.created | date:'mediumDate'"></td>
+      <td ng-bind="article.user.displayName"></td>
+      <td>
+        <span data-role="hint"
+              data-hint-background="bg-blue"
+              data-hint-color="fg-white"
+              data-hint-mode="2"
+              data-hint="Lihat artikel"
+              data-hint-position="top"
+              data-hint-timeout="2000"
+        ><button class="button cycle-button small-button" ui-sref="articles.view({ articleId: article._id })"><b class="mif-eye"></b></button></span>
+        <span data-role="hint"
+              data-hint-background="bg-yellow"
+              data-hint-color="fg-white"
+              data-hint-mode="2"
+              data-hint="Sunting artikel"
+              data-hint-position="top"
+              data-hint-timeout="2000"
+        ><button class="button cycle-button small-button" ui-sref="articles.edit({ articleId: article._id })"><b class="mif-pencil"></b></button></span>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</section>

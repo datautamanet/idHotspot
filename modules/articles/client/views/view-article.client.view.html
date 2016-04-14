@@ -1,0 +1,41 @@
+<section class="flex-grid grid flex-just-center">
+  <h1 class="text-light">{{vm.article.title}} <span class="mif-stack place-right"></span></h1>
+  <hr class="thin bg-grayLighter">
+  <span data-role="hint"
+        data-hint-background="bg-blue"
+        data-hint-color="fg-white"
+        data-hint-mode="2"
+        data-hint="Kembali"
+        data-hint-position="top"
+        data-hint-timeout="2000"
+  ><button class="button default" ui-sref="articles.list"><span class="mif-arrow-left"></span></button></span>
+  <span data-role="hint"
+        data-hint-background="bg-yellow"
+        data-hint-color="fg-white"
+        data-hint-mode="2"
+        data-hint="Sunting Artikel"
+        data-hint-position="top"
+        data-hint-timeout="2000"
+  ><button class="button warning" ui-sref="articles.edit({articleId: vm.article._id})"><span class="mif-cog"></span></button></span>
+  <span data-role="hint"
+        data-hint-background="bg-red"
+        data-hint-color="fg-white"
+        data-hint-mode="2"
+        data-hint="hapus Artikel"
+        data-hint-position="top"
+        data-hint-timeout="2000"
+  >  <button class="button danger" ng-click="vm.remove()"><span class="mif-bin"></span></button></span>
+  <hr class="thin bg-grayLighter">
+  <div >
+    <div class="cell">
+      <dl class="default">
+        <dt>Tgl Rilis</dt>
+        <dd ng-bind="vm.article.created | date:'mediumDate'"></dd>
+        <dt>Penulis</dt>
+        <dd ng-bind="vm.article.user?vm.article.user.displayName:'Deleted User'"></dd>
+        <dt>Konten</dt>
+        <dd ng-bind-html="vm.article.content"></dd>
+      </dl>
+    </div>
+  </div>
+</section>

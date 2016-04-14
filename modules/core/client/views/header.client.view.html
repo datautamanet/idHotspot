@@ -1,0 +1,42 @@
+<section ng-controller="HeaderController">
+  <div class="app-bar fixed-top" data-role="appbar">
+    <a class="app-bar-element branding" ui-sref="home"><strong>idHotspot</strong></a>
+    <span class="app-bar-divider"></span>
+    <ul class="app-bar-menu" ng-if="menu.shouldRender(authentication.user);">
+      <li ng-repeat="item in menu.items | orderBy: 'position'" ng-if="item.shouldRender(authentication.user);" ng-switch="item.type" ng-class="{ active: $state.includes(item.state), dropdown: item.type === 'dropdown' }" class="{{item.class}}" uib-dropdown="item.type === 'dropdown'">
+        <a ng-switch-when="dropdown" class="dropdown-toggle" uib-dropdown-toggle role="button">{{::item.title}}&nbsp;<span class="caret"></span></a>
+        <ul ng-switch-when="dropdown" class="d-menu" data-role="dropdown">
+          <li ng-repeat="subitem in item.items | orderBy: 'position'" ng-if="subitem.shouldRender(authentication.user);" ui-sref-active="active">
+            <a ui-sref="{{subitem.state}}" ng-bind="subitem.title"></a>
+          </li>
+        </ul>
+        <a ng-switch-default ui-sref="{{item.state}}" ng-bind="item.title"></a>
+      </li>
+    </ul>
+
+    <div ng-if="authentication.user" class="app-bar-element place-right">
+      <span class="dropdown-toggle fg-white"><img ng-src="{{authentication.user.profileImageURL}}" alt="{{authentication.user.displayName}}" class="header-profile-image" />&nbsp;</span>
+      <div class="app-bar-drop-container padding10 bg-white fg-dark place-right block-shadow flex-grid grid flex-just-center" data-role="dropdown" data-no-close="true" style="width: 250px">
+        <div class="row cells2">
+          <div class="cell colspan3">
+            <div class="row flex-just-center">
+              <img ng-src="{{authentication.user.profileImageURL}}" alt="{{authentication.user.displayName}}" class="header-profile-image-large" />
+            </div>
+          </div>
+          <div class="cell colspan9">
+            <div class="row no-padding" style="height: 20px;">
+              <span class="no-margin" ng-bind="authentication.user.displayName"></span>
+            </div>
+            <div class="row no-padding" style="height: 20px;">
+              <span class="no-margin text-small" ng-bind="authentication.user.email"></span>
+            </div>
+          </div>
+        </div>
+        <div>
+          <a ui-sref="settings.profile" class="button primary"><b class="mif-wrench"></b></a>
+          <a href="/api/auth/signout" target="_self" class="button danger"><b class="mif-exit"></b> Keluar</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

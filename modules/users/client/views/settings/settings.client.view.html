@@ -1,0 +1,27 @@
+<section>
+  <h1 class="text-light">Pengaturan <span class="mif-cog place-right"></span></h1>
+  <hr class="thin bg-grayLighter">
+  <div class="flex-grid grid flex-content-center">
+    <div class="row flex-dir-row flex-wrap cells2">
+      <div class="cell size3">
+        <ul class="sidebar2">
+          <li ui-sref-active="active stick bg-cyan">
+            <a ui-sref="settings.profile"><span class="mif-profile icon"></span>Ubah Profil</a>
+          </li>
+          <li ui-sref-active="active stick bg-lime">
+            <a ui-sref="settings.picture"><span class="mif-heartbeat icon"></span>Change Profile Picture</a>
+          </li>
+          <li ui-sref-active="active stick bg-crimson" ng-show="vm.user.provider === 'local'">
+            <a ui-sref="settings.password"><span class="mif-security icon"></span>Change Password</a>
+          </li>
+          <!--<li ui-sref-active="active stick bg-amber">-->
+            <!--<a ui-sref="settings.accounts"><span class="mif-share icon"></span>Manage Social Accounts</a>-->
+          <!--</li>-->
+        </ul>
+      </div>
+      <div class="cell auto-size">
+        <div ui-view class="row flex-dir-row flex-wrap cells"></div>
+      </div>
+    </div>
+  </div>
+</section>

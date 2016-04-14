@@ -1,0 +1,89 @@
+<section>
+  <div class="flex-grid grid flex-content-center">
+    <div class="cell colspan12">
+      <h1></h1>
+      <h1 class="text-light">User <span ng-bind="vm.user.username"></span> <span class="mif-user place-right"></span></h1>
+      <hr class="thin bg-grayLighter">
+      <span data-role="hint"
+            data-hint-background="bg-blue"
+            data-hint-color="fg-white"
+            data-hint-mode="2"
+            data-hint="Kembali"
+            data-hint-position="top"
+            data-hint-timeout="2000">
+        <button class="button default" ui-sref="admin.user({ userId:vm.user._id })"><span class="mif-arrow-left"></span></button>
+      </span>
+      <hr class="thin bg-grayLighter">
+      <form name="vm.userForm" ng-submit="vm.update(vm.userForm.$valid)" novalidate>
+        <div class="row flex-dir-row flex-wrap cells2">
+          <div class="row">
+            <div class="cell colspan2 auto-size">
+              <label for="firstName" class="text-accent">Nama</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="cell auto-size">
+              <div class="form-group" show-errors>
+                <div class="row">
+                  <div class="input-control text full-size">
+                    <input type="text" id="firstName" name="firstName" class="form-control" ng-model="vm.user.firstName" placeholder="Depan" required />
+                  </div>
+                </div>
+                <div class="row">
+                  <div ng-messages="vm.userForm.firstName.$error" role="alert">
+                    <span class="help-block error-text fg-crimson" ng-message="required">Nama depan harus diisi</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="cell auto-size">
+              <div class="form-group" show-errors>
+                <div class="row">
+                  <div class="input-control text full-size">
+                    <input type="text" id="lastName" name="lastName" class="form-control" ng-model="vm.user.lastName" placeholder="Belakang" required />
+                  </div>
+                </div>
+                <div class="row">
+                  <div ng-messages="vm.userForm.lastName.$error" role="alert">
+                    <span class="help-block error-text fg-crimson" ng-message="required">Nama belakang harus diisi</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group cell size5" show-errors>
+            <div class="row">
+              <label for="roles" class="text-accent">Roles</label>
+            </div>
+            <div class="row">
+              <label class="input-control checkbox padding5" ng-repeat="(key, text) in roles">
+                <input name="roles" id="roles" type="checkbox" checklist-model="vm.user.roles" checklist-value="key">
+                <span class="check"></span>
+                <span class="caption">{{text}}</span>
+              </label>
+            </div>
+            <div class="row">
+              <div ng-messages="vm.userForm.roles.$error" role="alert">
+                <span class="help-block error-text fg-crimson" ng-message="required">Roles minimal harus diisi user</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group input-control">
+            <button type="submit" class="button primary form-control">{{vm.user._id ? 'Simpan Perubahan' : 'Simpan User'}}</button>
+            <button class="button alert form-control" ng-if="vm.user._id" ui-sref="admin.user({ userId:vm.user._id })">Batal</button>
+            <button class="button alert form-control" ng-if="!vm.user._id" ui-sref="admin.users">Batal</button>
+          </div>
+        </div>
+        <div class="row">
+          <div ng-show="vm.error" class="fg-crimson">-->
+            <strong ng-bind="vm.error"></strong>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>

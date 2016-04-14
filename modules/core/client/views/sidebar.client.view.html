@@ -1,0 +1,13 @@
+<section ng-controller="SidebarController">
+  <div ng-if="authentication.user" class="cell size-x200" id="cell-sidebar" style="background-color: #71b1d1; height: 100%">
+    <ul class="sidebar">
+      <li ng-repeat="item in menu.items | orderBy: 'position'" ng-if="item.shouldRender(authentication.user);" ng-switch="item.type" ng-class="{ active: $state.includes(item.state) }" class="{{item.class}}">
+        <a ng-switch-when="link" ui-sref="{{item.state}}">
+          <span class="{{item.icon}} icon"></span>
+          <span class="title" ng-bind="item.title"></span>
+          <span class="counter" ng-bind="articles.length" ng-if="item.title==='Articles'"></span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>

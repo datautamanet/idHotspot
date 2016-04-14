@@ -1,0 +1,57 @@
+<section>
+  <div class="flex-grid grid flex-content-center">
+    <h1 class="text-light">{{vm.article._id ? 'Sunting Artikel' : 'Artikel Baru'}} <span class="mif-stack place-right"></span></h1>
+    <hr class="thin bg-grayLighter">
+    <span data-role="hint"
+          data-hint-background="bg-blue"
+          data-hint-color="fg-white"
+          data-hint-mode="2"
+          data-hint="Kembali"
+          data-hint-position="top"
+          data-hint-timeout="2000">
+      <button class="button default" ng-if="vm.article._id" ui-sref="articles.view({ articleId:vm.article._id })"><span class="mif-arrow-left"></span></button>
+      <button class="button default" ng-if="!vm.article._id" ui-sref="articles.list"><span class="mif-arrow-left"></span></button>
+    </span>
+    <hr class="thin bg-grayLighter">
+    <!--<div class="flex-grid">-->
+    <div class="row flex-dir-row flex-wrap cells">
+      <div class="cell auto-size">
+        <form name="vm.form.articleForm" class="form-horizontal" ng-submit="vm.save(vm.form.articleForm.$valid)" novalidate>
+          <div class="row">
+            <div class="cell auto-size">
+              <div class="form-group" show-errors>
+                <div class="input-control text full-size">
+                  <input name="title" type="text" ng-model="vm.article.title" id="title" class="form-control text cell colspan12" placeholder="Judul" required>
+                </div>
+              </div>
+              <div class="row" ng-messages="vm.form.articleForm.title.$error" role="alert">
+                <p class="help-block error-text fg-crimson" ng-message="required">Judul artikel dibutuhkan.</p>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="cell auto-size">
+              <div class="form-group">
+                <div class="input-control textarea full-size">
+                  <textarea ui-tinymce="{height : '400'}" name="content" data-ng-model="vm.article.content" id="content" class="form-control textarea cell colspan12" placeholder="Konten"></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-control">
+              <button type="submit" class="button primary form-control">{{vm.article._id ? 'Simpan Perubahan' : 'Simpan Artikel'}}</button>
+              <button class="button alert form-control" ng-if="vm.article._id" ui-sref="articles.view({ articleId:vm.article._id })">Batal</button>
+              <button class="button alert form-control" ng-if="!vm.article._id" ui-sref="articles.list">Batal</button>
+            </div>
+          </div>
+          <div class="row">
+            <div ng-show="vm.error" class="fg-crimson">-->
+              <strong ng-bind="vm.error"></strong>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

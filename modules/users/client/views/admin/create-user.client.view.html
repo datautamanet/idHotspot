@@ -1,0 +1,142 @@
+<section>
+  <div class="flex-grid grid flex-content-center">
+    <div class="cell colspan12">
+      <h1></h1>
+      <h1 class="text-light">Create New User <span class="mif-user place-right"></span></h1>
+      <hr class="thin bg-grayLighter">
+      <span data-role="hint"
+            data-hint-background="bg-blue"
+            data-hint-color="fg-white"
+            data-hint-mode="2"
+            data-hint="Kembali"
+            data-hint-position="top"
+            data-hint-timeout="2000">
+        <button class="button default" ui-sref="admin.users"><span class="mif-arrow-left"></span></button>
+      </span>
+      <hr class="thin bg-grayLighter">
+      <div class="flex-grid">
+        <div class="row flex-dir-row flex-wrap cells">
+          <div class="cell auto-size">
+            <form name="vm.userForm" class="form-horizontal" ng-submit="vm.save(vm.userForm.$valid)" novalidate>
+              <div class="row flex-dir-row flex-wrap cells2">
+                <div class="row no-margin-bottom">
+                  <div class="cell colspan2 auto-size">
+                    <label for="firstName" class="text-accent">Nama</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="cell auto-size">
+                    <div class="form-group" show-errors>
+                      <div class="row">
+                        <div class="input-control text full-size">
+                          <input type="text" id="firstName" name="firstName" class="form-control" ng-model="vm.user.firstName" placeholder="Depan" required />
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div ng-messages="vm.userForm.firstName.$error" role="alert">
+                          <span class="help-block error-text fg-crimson" ng-message="required">Nama depan harus diisi</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="cell auto-size">
+                    <div class="form-group" show-errors>
+                      <div class="row">
+                        <div class="input-control text full-size">
+                          <input type="text" id="lastName" name="lastName" class="form-control" ng-model="vm.user.lastName" placeholder="Belakang" required />
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div ng-messages="vm.userForm.lastName.$error" role="alert">
+                          <span class="help-block error-text fg-crimson" ng-message="required">Nama belakang harus diisi</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row no-margin">
+                <div class="cell auto-size">
+                  <div class="form-group" show-errors>
+                    <div class="row">
+                      <label for="email" class="text-accent">Email</label>
+                    </div>
+                    <div class="row">
+                      <div class="input-control email full-size">
+                        <input type="email" id="email" name="email" class="form-control" ng-model="vm.user.email" placeholder="Email" required />
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div ng-messages="vm.userForm.email.$error" role="alert">
+                        <span class="help-block error-text fg-crimson" ng-message="required">Email harus diisi</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row no-margin">
+                <div class="cell auto-size">
+                  <div class="form-group" show-errors>
+                    <div class="row">
+                      <label for="username" class="text-accent">Username</label>
+                    </div>
+                    <div class="row">
+                      <div class="input-control text full-size">
+                        <input type="text" id="username" name="username" class="form-control" ng-model="vm.user.username" placeholder="Username" required />
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div ng-messages="vm.userForm.username.$error" role="alert">
+                        <span class="help-block error-text fg-crimson" ng-message="required">Username harus diisi</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row no-margin">
+                <div class="cell auto-size">
+                  <div class="form-group" show-errors>
+                    <div class="row">
+                      <label for="password" class="text-accent">Password</label>
+                    </div>
+                    <div class="row">
+                      <div class="input-control password full-size">
+                        <input type="password" id="password" name="password" class="form-control" ng-model="vm.user.password" placeholder="Password" data-role="popover" data-popover-position="bottom" data-popover-text="{{vm.getPopoverMsg()}}" data-popover-background="bg-red" data-popover-color="fg-white" data-popover-mode="focus" password-validator required>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div ng-messages="vm.userForm.password.$error" role="alert">
+                        <span class="help-block error-text fg-crimson" ng-message="required">Enter a new password</span>
+                        <div ng-repeat="passwordError in passwordErrors">
+                          <span class="help-block error-text" ng-show="vm.userForm.password.$error.requirements">{{passwordError}}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group cell auto-size" ng-show="!vm.userFormm.password.$error.required">
+                  <label>Password Requirements</label>
+                  <div data-value="{{requirementsProgress}}" class="progress" data-color="ribbed-amber" data-role="progress"><span class="small" style="color:#ff0000; white-space:nowrap;">{{requirementsProgress}}%</span></div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group input-control">
+                  <button type="submit" class="button primary form-control">{{vm.user._id ? 'Simpan Perubahan' : 'Simpan User'}}</button>
+                  <button class="button alert form-control" ng-if="vm.user._id" ui-sref="admin.user({ userId:vm.user._id })">Batal</button>
+                  <button class="button alert form-control" ng-if="!vm.user._id" ui-sref="admin.users">Batal</button>
+                </div>
+              </div>
+              <div class="row">
+                <div ng-show="vm.error" class="fg-crimson">-->
+                  <strong ng-bind="vm.error"></strong>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

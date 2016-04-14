@@ -1,0 +1,39 @@
+<section>
+  <h1 class="text-light">{{vm.user.username}} <span class="mif-user place-right"></span></h1>
+  <hr class="thin bg-grayLighter">
+  <button class="button default" ui-sref="admin.users"><span class="mif-arrow-left"></span></button>
+  <button class="button warning" ui-sref="admin.user-edit({userId: vm.user._id})"><span class="mif-cog"></span></button>
+  <button class="button danger" ng-click="vm.remove()" ng-if="vm.user._id !== vm.authentication.user._id"><span class="mif-user-minus"></span></button>
+  <hr class="thin bg-grayLighter">
+  <div class="flex-grid flex-content-center">
+    <div class="row">
+      <div class="cell colspan2 text-accent"><strong>First Name</strong></div>
+      <div class="cell colspan6 text-accent" ng-bind="vm.user.firstName"></div>
+    </div>
+    <hr class="thin bg-grayLighter"/>
+    <div class="row">
+      <div class="cell colspan2 text-accent"><strong>Last Name</strong></div>
+      <div class="cell colspan6 text-accent" ng-bind="vm.user.lastName"></div>
+    </div>
+    <hr class="thin bg-grayLighter"/>
+    <div class="row">
+      <div class="cell colspan2 text-accent"><strong>Email</strong></div>
+      <div class="cell colspan6 text-accent" ng-bind="vm.user.email"></div>
+    </div>
+    <hr class="thin bg-grayLighter"/>
+    <div class="row">
+      <div class="cell colspan2 text-accent"><strong>Provider</strong></div>
+      <div class="cell colspan6 text-accent" ng-bind="vm.user.provider"></div>
+    </div>
+    <hr class="thin bg-grayLighter"/>
+    <div class="row">
+      <div class="cell colspan2 text-accent"><strong>Created</strong></div>
+      <div class="cell colspan6 text-accent" ng-bind="vm.user.created | date"></div>
+    </div>
+    <hr class="thin bg-grayLighter"/>
+    <div class="row">
+      <div class="cell colspan2 text-accent"><strong>Roles</strong></div>
+      <div class="cell colspan6 text-accent" ng-bind="vm.user.roles"></div>
+    </div>
+  </div>
+</section>

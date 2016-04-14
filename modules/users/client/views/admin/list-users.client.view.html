@@ -1,0 +1,54 @@
+<section>
+  <h1 class="text-light">Daftar User <span class="mif-users place-right"></span></h1>
+  <hr class="thin bg-grayLighter">
+  <span data-role="hint"
+        data-hint-background="bg-blue"
+        data-hint-color="fg-white"
+        data-hint-mode="2"
+        data-hint="Tambah user baru"
+        data-hint-position="top"
+        data-hint-timeout="2000"
+  ><button class="button primary" ui-sref="admin.user-create"><b class="mif-plus"></b></button></span>
+  <hr class="thin bg-grayLighter">
+  <div class="flex-grid">
+    <div class="row flex-dir-row flex-wrap cells">
+      <div class="cell auto-size">
+        <table class="border row-border hovered striped" datatable="ng" data-auto-width="false">
+          <thead>
+          <tr>
+            <td style="width: 20px">
+            </td>
+            <td class="sortable-column" style="width: 100px">Username</td>
+            <td class="sortable-column">Roles</td>
+            <td class="sortable-column">Email</td>
+            <td style="width: 50px"></td>
+          </tr>
+          </thead>
+          <tbody>
+          <tr ng-repeat="user in vm.users">
+            <td>
+              <label class="input-control checkbox small-check no-margin">
+                <input type="checkbox">
+                <span class="check"></span>
+              </label>
+            </td>
+            <td ng-bind="user.username"></td>
+            <td ng-bind="user.roles"></td>
+            <td ng-bind="user.email"></td>
+            <td>
+        <span data-role="hint"
+              data-hint-background="bg-blue"
+              data-hint-color="fg-white"
+              data-hint-mode="2"
+              data-hint="User Detail"
+              data-hint-position="top"
+              data-hint-timeout="2000"
+        ><button class="button cycle-button small-button" ui-sref="admin.user({userId: user._id})"><b class="mif-eye mif-lg"></b></button></span>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>

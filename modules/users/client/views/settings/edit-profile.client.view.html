@@ -1,0 +1,92 @@
+<section>
+  <form name="vm.userForm" ng-submit="vm.updateUserProfile(vm.userForm.$valid)" novalidate autocomplete="off">
+    <div class="flex-grid grid flex-content-center">
+      <div class="row flex-dir-row flex-wrap cells">
+        <div class="cell auto-size">
+          <div class="row no-margin-bottom">
+            <div class="cell auto-size">
+              <label for="firstName" class="text-accent">Nama</label>
+            </div>
+          </div>
+          <div class="row flex-wrap cells2">
+            <div class="cell auto-size">
+              <div class="form-group" show-errors>
+                <div class="row">
+                  <div class="input-control text full-size">
+                    <input type="text" id="firstName" name="firstName" class="form-control" ng-model="vm.user.firstName" placeholder="Depan" required />
+                  </div>
+                </div>
+                <div class="row">
+                  <div ng-messages="vm.userForm.firstName.$error" role="alert">
+                    <span class="help-block error-text fg-crimson" ng-message="required">Nama depan harus diisi</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="cell auto-size">
+              <div class="form-group" show-errors>
+                <div class="row">
+                  <div class="input-control text full-size">
+                    <input type="text" id="lastName" name="lastName" class="form-control" ng-model="vm.user.lastName" placeholder="Belakang" required />
+                  </div>
+                </div>
+                <div class="row">
+                  <div ng-messages="vm.userForm.lastName.$error" role="alert">
+                    <span class="help-block error-text fg-crimson" ng-message="required">Nama belakang harus diisi</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group cell auto-size" show-errors>
+            <div class="row">
+              <label for="email" class="text-accent">Email</label>
+            </div>
+            <div class="row">
+              <div class="input-control email full-size">
+                <input type="email" id="email" name="email" class="form-control" ng-model="vm.user.email" placeholder="Email" lowercase required>
+              </div>
+            </div>
+            <div class="row">
+              <div ng-messages="vm.userForm.email.$error" role="alert">
+                <span class="help-block error-text fg-crimson" ng-message="required">Email harus diisi</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group cell auto-size" show-errors>
+            <div class="row">
+              <label for="username" class="text-accent">Username</label>
+            </div>
+            <div class="row">
+              <div class="input-control text full-size">
+                <input type="text" id="username" name="username" class="form-control" ng-model="vm.user.username" placeholder="Username" lowercase required>
+              </div>
+            </div>
+            <div class="row">
+              <div ng-messages="vm.userForm.username.$error" role="alert">
+                <span class="help-block error-text fg-crimson" ng-message="required">Username harus diisi</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group input-control">
+            <button type="submit" class="button primary form-control">Simpan Profil</button>
+          </div>
+        </div>
+        <div class="cell size12 padding10">
+          <div ng-show="vm.success" class="fg-lightGreen">
+            <strong>Profile Saved Successfully</strong>
+          </div>
+          <div ng-show="vm.error" class="fg-crimson">
+            <strong ng-bind="vm.error"></strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</section>
