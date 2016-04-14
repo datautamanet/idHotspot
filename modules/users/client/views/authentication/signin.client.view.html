@@ -2,7 +2,10 @@
   <form name="vm.userForm" ng-submit="vm.signin(vm.userForm.$valid)" class="signin form-horizontal" novalidate autocomplete="off" data-role="validator">
     <h1 class="text-light">Masuk idHotspot</h1>
     <hr class="thin"/>
-    <br />
+    <img ng-click="vm.callOauthProvider('/api/auth/facebook')" ng-src="/modules/users/client/img/buttons/facebook.png">
+    <div class="row align-center flex-just-center">
+      <span>or</span>
+    </div>
     <div class="input-control modern text iconic">
       <input type="text" id="username" name="username" ng-model="vm.credentials.username" lowercase required>
       <span class="label">Username</span>
@@ -10,7 +13,6 @@
       <span class="placeholder">Username</span>
       <span class="icon mif-user"></span>
     </div>
-    <br />
     <br />
     <div class="input-control modern password iconic" data-role="input">
       <input type="password" id="password" name="password" ng-model="vm.credentials.password" required>
@@ -25,6 +27,7 @@
     <div class="form-actions align-center">
       <button type="submit" class="button primary">Masuk</button>
     </div>
+
     <uib-alert type="danger" ng-show="vm.error" class="padding10 align-center fg-crimson">
       <span ng-bind="vm.error"></span>
     </uib-alert>
