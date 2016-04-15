@@ -39,13 +39,34 @@
 
 </head>
 
-<body class="ng-cloak bg-steel">
+<body class="ng-cloak bg-white">
+  <div id="fb-root"></div>
+  <script>
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId   : '1689869297943320',
+        status  : true,
+        cookie  : true,
+        xfbml   : true,
+        version : 'v2.6'
+      });
+    };
+
+    (function(d, s, id){
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {return;}
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+  </script>
+
   <div ng-include="'/modules/core/client/views/header.client.view.html'" ></div>
   <section class="page-content">
     <div class="flex-grid grid no-margin no-responsive-future" style="height: 100%;">
       <div class="row no-margin" style="min-height: 100%;">
-        <div class="no-margin" ng-include="'/modules/core/client/views/sidebar.client.view.html'" ></div>
-        <div class="cell no-margin auto-size padding20 bg-white" id="cell-content">
+        <div class="no-margin bg-steel" ng-include="'/modules/core/client/views/sidebar.client.view.html'" ></div>
+        <div class="cell no-margin auto-size padding20 bg-white" id="cell-content" style="height: 100%;">
           {% block content %}{% endblock %}
         </div>
       </div>

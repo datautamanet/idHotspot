@@ -4,7 +4,7 @@ module.exports = {
   app: {
     title: 'idHotspot',
     description: 'Data Utama NET Integrated Hotspot System',
-    keywords: 'mongodb, express, angularjs, node.js, mongoose, passport',
+    keywords: 'hotspot, datautama, idhotspot, wifi, gratis',
     googleAnalyticsTrackingID: process.env.GOOGLE_ANALYTICS_TRACKING_ID || 'GOOGLE_ANALYTICS_TRACKING_ID'
   },
   port: process.env.PORT || 3000,

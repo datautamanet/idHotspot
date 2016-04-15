@@ -71,6 +71,7 @@ module.exports = {
     Promise: true,
     __TESTING__: true,
     _: false,
-    ApplicationConfiguration: true
+    ApplicationConfiguration: true,
+    FB: true
   }
 };

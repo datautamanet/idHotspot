@@ -1,8 +1,14 @@
-<div class="login-form padding20 block-shadow">
+<div class="padding20 block-shadow">
   <form name="vm.userForm" ng-submit="vm.signin(vm.userForm.$valid)" class="signin form-horizontal" novalidate autocomplete="off" data-role="validator">
     <h1 class="text-light">Masuk idHotspot</h1>
     <hr class="thin"/>
-    <img ng-click="vm.callOauthProvider('/api/auth/facebook')" ng-src="/modules/users/client/img/buttons/facebook.png">
+    <br/>
+    <div class="row align-center flex-just-center">
+      <button class="image-button bg-darkBlue fg-white" ng-click="vm.callOauthProvider('/api/auth/facebook')">
+        Masuk dengan akun Facebook
+        <span class="icon mif-facebook bg-darkBlue"></span>
+      </button>
+    </div>
     <div class="row align-center flex-just-center">
       <span>or</span>
     </div>

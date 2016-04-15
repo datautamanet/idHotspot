@@ -1,0 +1,58 @@
+<section>
+  <h1 class="text-light">Daftar Node <span class="mif-location place-right"></span></h1>
+  <hr class="thin bg-grayLighter">
+  <span data-role="hint"
+        data-hint-background="bg-blue"
+        data-hint-color="fg-white"
+        data-hint-mode="2"
+        data-hint="Buat node baru"
+        data-hint-position="top"
+        data-hint-timeout="2000"
+  ><button class="button primary" ui-sref="nodes.create"><b class="mif-plus"></b></button></span>
+  <hr class="thin bg-grayLighter">
+  <table class="border row-border hovered striped" datatable="ng" data-auto-width="false">
+    <thead>
+    <tr>
+      <td style="width: 20px">
+      </td>
+      <td class="sortable-column">Nama</td>
+      <td class="sortable-column">Pemilik</td>
+      <td class="sortable-column">Alamat IP</td>
+      <td class="sortable-column">Secret Key</td>
+      <td style="width: 100px"></td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="node in vm.nodes">
+      <td>
+        <label class="input-control checkbox small-check no-margin">
+          <input type="checkbox">
+          <span class="check"></span>
+        </label>
+      </td>
+      <td ng-bind="node.name"></td>
+      <td ng-bind="node.owner.displayName"></td>
+      <td ng-bind="node.ip_address"></td>
+      <td ng-bind="node.secret"></td>
+      <td>
+        <span data-role="hint"
+              data-hint-background="bg-blue"
+              data-hint-color="fg-white"
+              data-hint-mode="2"
+              data-hint="Lihat node"
+              data-hint-position="top"
+              data-hint-timeout="2000"
+        ><button class="button cycle-button small-button" ui-sref="nodes.view({ nodeId: node._id })"><b class="mif-eye"></b></button></span>
+        <span data-role="hint"
+              data-hint-background="bg-yellow"
+              data-hint-color="fg-white"
+              data-hint-mode="2"
+              data-hint="Sunting node"
+              data-hint-position="top"
+              data-hint-timeout="2000"
+        ><button class="button cycle-button small-button" ui-sref="nodes.edit({ nodeId: node._id })"><b class="mif-pencil"></b></button></span>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</section>

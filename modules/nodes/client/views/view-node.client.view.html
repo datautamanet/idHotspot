@@ -1,0 +1,43 @@
+<section class="flex-grid grid flex-just-center">
+  <h1 class="text-light">{{vm.node.name}} <span class="mif-location place-right"></span></h1>
+  <hr class="thin bg-grayLighter">
+  <span data-role="hint"
+        data-hint-background="bg-blue"
+        data-hint-color="fg-white"
+        data-hint-mode="2"
+        data-hint="Kembali"
+        data-hint-position="top"
+        data-hint-timeout="2000"
+  ><button class="button default" ui-sref="nodes.list"><span class="mif-arrow-left"></span></button></span>
+  <span data-role="hint"
+        data-hint-background="bg-yellow"
+        data-hint-color="fg-white"
+        data-hint-mode="2"
+        data-hint="Sunting Node"
+        data-hint-position="top"
+        data-hint-timeout="2000"
+  ><button class="button warning" ui-sref="nodes.edit({nodeId: vm.node._id})"><span class="mif-cog"></span></button></span>
+  <span data-role="hint"
+        data-hint-background="bg-red"
+        data-hint-color="fg-white"
+        data-hint-mode="2"
+        data-hint="Hapus Node"
+        data-hint-position="top"
+        data-hint-timeout="2000"
+  >  <button class="button danger" ng-click="vm.remove()"><span class="mif-bin"></span></button></span>
+  <hr class="thin bg-grayLighter">
+  <div >
+    <div class="cell">
+      <dl class="default">
+        <dt>Nama</dt>
+        <dd ng-bind="vm.node.name"></dd>
+        <dt>Owner</dt>
+        <dd ng-bind="vm.node.owner?vm.article.owner.displayName:'-'"></dd>
+        <dt>Alamat IP</dt>
+        <dd ng-bind="vm.node.ip_address"></dd>
+        <dt>Secret</dt>
+        <dd ng-bind-html="vm.node.secret"></dd>
+      </dl>
+    </div>
+  </div>
+</section>

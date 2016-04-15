@@ -58,13 +58,7 @@ a:hover .header-profile-image {
 html, body {
   height: 100%;
 }
-body {
-}
-/*.page-content {*/
-  /*padding-top: 3.125rem;*/
-  /*min-height: 100%;*/
-  /*height: 100%;*/
-/*}*/
+
 .table .input-control.checkbox {
   line-height: 1;
   min-height: 0;

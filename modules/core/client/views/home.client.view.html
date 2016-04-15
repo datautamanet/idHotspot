@@ -2,92 +2,17 @@
   <h1 class="text-light">Dashboard <span class="mif-home place-right"></span></h1>
   <hr class="thin bg-grayLighter">
   <div class="flex-grid">
-    <!--<div class="row flex-dir-row flex-wrap cells4">-->
-      <!--<div class="cell auto-size">-->
-        <!--<div class="panel alert">-->
-          <!--<div class="heading">-->
-            <!--<span class="title">Pengaduan</span>-->
-          <!--</div>-->
-          <!--<div class="content padding10">-->
-            <!--<h1 class="align-center" style="font-size: 80pt"><strong>0</strong></h1>-->
-          <!--</div>-->
-        <!--</div>-->
-      <!--</div>-->
-      <!--<div class="cell auto-size">-->
-        <!--<div class="panel success">-->
-          <!--<div class="heading">-->
-            <!--<span class="title">Perbaikan</span>-->
-          <!--</div>-->
-          <!--<div class="content padding10">-->
-            <!--<h1 class="align-center" style="font-size: 80pt"><strong>0</strong></h1>-->
-          <!--</div>-->
-        <!--</div>-->
-      <!--</div>-->
-      <!--<div class="cell auto-size">-->
-        <!--<div class="panel warning">-->
-          <!--<div class="heading">-->
-            <!--<span class="title">Gangguan</span>-->
-          <!--</div>-->
-          <!--<div class="content padding10">-->
-            <!--<h1 class="align-center" style="font-size: 80pt"><strong>0</strong></h1>-->
-          <!--</div>-->
-        <!--</div>-->
-      <!--</div>-->
-      <!--<div class="cell auto-size">-->
-        <!--<div class="panel">-->
-          <!--<div class="heading">-->
-            <!--<span class="title">BOD</span>-->
-          <!--</div>-->
-          <!--<div class="content padding10">-->
-            <!--<h1 class="align-center" style="font-size: 80pt"><strong>0</strong></h1>-->
-          <!--</div>-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
-    <!--<div class="row flex-dir-row flex-wrap cells4">-->
-      <!--<div class="cell auto-size padding10" style="border:1px #ccc dashed">-->
-        <!--<h3 class="heading">NOC Official Release</h3>-->
-        <!--<div class="listview-outlook" data-role="listview">-->
-          <!--<div class="list">-->
-            <!--<div class="list-content">-->
-              <!--<span class="list-title">...list title...</span>-->
-              <!--<span class="list-subtitle">...list subtitle...</span>-->
-              <!--<span class="list-remark">...list remark...</span>-->
-            <!--</div>-->
-          <!--</div>-->
-          <!--<div class="list">-->
-            <!--<div class="list-content">-->
-              <!--<span class="list-title">...list title...</span>-->
-              <!--<span class="list-subtitle">...list subtitle...</span>-->
-              <!--<span class="list-remark">...list remark...</span>-->
-            <!--</div>-->
-          <!--</div>-->
-          <!--<div class="list">-->
-            <!--<div class="list-content">-->
-              <!--<span class="list-title">...list title...</span>-->
-              <!--<span class="list-subtitle">...list subtitle...</span>-->
-              <!--<span class="list-remark">...list remark...</span>-->
-            <!--</div>-->
-          <!--</div>-->
-          <!--<div class="list">-->
-            <!--<div class="list-content">-->
-              <!--<span class="list-title">...list title...</span>-->
-              <!--<span class="list-subtitle">...list subtitle...</span>-->
-              <!--<span class="list-remark">...list remark...</span>-->
-            <!--</div>-->
-          <!--</div>-->
-          <!--<div class="list">-->
-            <!--<div class="list-content">-->
-              <!--<span class="list-title">...list title...</span>-->
-              <!--<span class="list-subtitle">...list subtitle...</span>-->
-              <!--<span class="list-remark">...list remark...</span>-->
-            <!--</div>-->
-          <!--</div>-->
-        <!--</div>-->
-      <!--</div>-->
-      <!--<div class="cell auto-size">-->
-
-      <!--</div>-->
-    <!--</div>-->
+    <div class="row flex-dir-row flex-wrap cells">
+      <div class="cell auto-size">
+        <div class="row flex-just-center">
+          <button class="command-button {{inetbtn.class}}" ng-click="inetbtn.class==='success'?startInet():stopInet()">
+            <span class="icon {{inetbtn.mif}}"></span>
+            {{inetbtn.caption}}
+            <small>{{inetbtn.text}}</small>
+          </button>
+          <span>{{vm.response}}</span>
+        </div>
+      </div>
+    </div>
   </div>
 </section>

@@ -1,0 +1,81 @@
+<section>
+  <div class="flex-grid grid flex-content-center">
+    <h1 class="text-light">{{vm.node._id ? 'Sunting Node' : 'Node Baru'}} <span class="mif-location place-right"></span></h1>
+    <hr class="thin bg-grayLighter">
+    <span data-role="hint"
+          data-hint-background="bg-blue"
+          data-hint-color="fg-white"
+          data-hint-mode="2"
+          data-hint="Kembali"
+          data-hint-position="top"
+          data-hint-timeout="2000">
+      <button class="button default" ng-if="vm.node._id" ui-sref="nodes.view({ nodeId:vm.node._id })"><span class="mif-arrow-left"></span></button>
+      <button class="button default" ng-if="!vm.node._id" ui-sref="nodes.list"><span class="mif-arrow-left"></span></button>
+    </span>
+    <hr class="thin bg-grayLighter">
+    <div class="flex-dir-row flex-wrap">
+      <form name="vm.form.nodeForm" class="form-horizontal" ng-submit="vm.save(vm.form.nodeForm.$valid)" novalidate>
+        <div class="form-group" show-errors>
+          <div class="row cells no-margin-bottom">
+            <div class="cell size3">
+              <label for="name">Nama Node</label>
+              <div class="input-control text full-size">
+                <input  id="name" name="name" type="text" ng-model="vm.node.name" placeholder="Nama node" required>
+              </div>
+            </div>
+          </div>
+          <div class="row cells no-margin-top" ng-messages="vm.form.nodeForm.name.$error" role="alert">
+            <div class="cell auto-size">
+              <p class="help-block error-text fg-crimson" ng-message="required">Nama node dibutuhkan.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group" show-errors>
+          <div class="row cells no-margin-bottom">
+            <div class="cell size3">
+              <label for="ip_address">Alamat IP</label>
+              <div class="input-control text full-size">
+                <input  id="ip_address" name="ip_address" type="text" ng-model="vm.node.ip_address" placeholder="Alamat IP" required>
+              </div>
+            </div>
+          </div>
+          <div class="row cells no-margin-top" ng-messages="vm.form.nodeForm.ip_address.$error" role="alert">
+            <div class="cell auto-size">
+              <p class="help-block error-text fg-crimson" ng-message="required">Alamat IP dibutuhkan.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group" show-errors>
+          <div class="row cells no-margin-bottom">
+            <div class="cell size3">
+              <label for="secret">Secret</label>
+              <div class="input-control text full-size">
+                <input  id="secret" name="secret" type="text" ng-model="vm.node.secret" placeholder="Secret Key" required>
+              </div>
+            </div>
+          </div>
+          <div class="row cells no-margin-top" ng-messages="vm.form.nodeForm.secret.$error" role="alert">
+            <div class="cell auto-size">
+              <p class="help-block error-text fg-crimson" ng-message="required">Secret Key dibutuhkan.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="input-control">
+            <button type="submit" class="button primary form-control">{{vm.node._id ? 'Simpan Perubahan' : 'Simpan Node'}}</button>
+            <button class="button alert form-control" ng-if="vm.node._id" ui-sref="nodes.view({ nodeId:vm.node._id })">Batal</button>
+            <button class="button alert form-control" ng-if="!vm.node._id" ui-sref="nodes.list">Batal</button>
+          </div>
+        </div>
+        <div class="row">
+          <div ng-show="vm.error" class="fg-crimson">-->
+            <strong ng-bind="vm.error"></strong>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
