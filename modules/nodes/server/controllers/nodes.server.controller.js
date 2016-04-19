@@ -46,8 +46,8 @@ exports.read = function (req, res) {
 exports.update = function (req, res) {
   var node = req.node;
 
-  node.title = req.body.title;
-  node.content = req.body.content;
+  // node.title = req.body.title;
+  // node.content = req.body.content;
 
   node.save(function (err) {
     if (err) {
