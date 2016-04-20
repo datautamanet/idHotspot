@@ -10,6 +10,7 @@ angular.module('core').service('Hotspot', ['$rootScope', 'HotspotsService', 'Aut
     this.onlineInetState = onlineInetState;
     this.startSession = startSession;
     this.stopSession = stopSession;
+    this.checkSession = checkSession;
 
     function onlineInetState() {
       $rootScope.inetbtn = {
@@ -29,7 +30,7 @@ angular.module('core').service('Hotspot', ['$rootScope', 'HotspotsService', 'Aut
       };
     }
 
-    this.checkSession = function () {
+    function checkSession() {
       UserHotspotsService.query({
         userId: Authentication.user._id
       }, function (data) {
@@ -39,14 +40,32 @@ angular.module('core').service('Hotspot', ['$rootScope', 'HotspotsService', 'Aut
           var session_time = Math.floor(selisih / 60e3);
           if (data[0].session_time > session_time) {
             onlineInetState();
+            if (session_time < 1) session_time = 1;
+            var session_counter = setInterval(function () {
+              console.log(session_time++);
+              if (session_time > data[0].session_time) {
+                stopSession();
+                clearSession();
+                clearInterval(session_counter);
+              }
+            }, 60000);
           } else {
             offlineInetState();
           }
         } else {
           offlineInetState();
         }
+        // $http.get('//api.ipify.org?format=jsonp&callback=?').then(function (data) {
+        //   // console.log(JSON.stringify(data, null, 2));
+        //   console.log(data.data);
+        // }, function (data) {
+        //   console.log(data);
+        // });
+        $.getJSON('//api.ipify.org?format=jsonp&callback=?', function(data) {
+          console.log(data.ip);
+        });
       });
-    };
+    }
 
     this.start = function () {
       UserHotspotsService.query({
@@ -61,9 +80,11 @@ angular.module('core').service('Hotspot', ['$rootScope', 'HotspotsService', 'Aut
           } else {
             clearSession();
             startSession();
+            checkSession();
           }
         } else {
           startSession();
+          checkSession();
         }
       });
     };
@@ -71,7 +92,7 @@ angular.module('core').service('Hotspot', ['$rootScope', 'HotspotsService', 'Aut
     function startSession() {
       var session = new HotspotsService();
       session.user = authentication.user;
-      session.session_time = 1440;
+      session.session_time = 1440; // 60*24hrs
       session.online = true;
       session.node = '5710fd5399b6d6c82e306556';
       session.$save(startSuccessCallback, startErrorCallback);
@@ -113,7 +134,7 @@ angular.module('core').service('Hotspot', ['$rootScope', 'HotspotsService', 'Aut
           var url = 'api/hotspots/' + data[0]._id;
           var session = data[0];
           session.online = true;
-          $http.delete(url).then(startSuccessCallback, startErrorCallback);
+          $http.delete(url).then(stopSuccessCallback, stopErrorCallback);
         }
       });
     }
@@ -137,6 +158,5 @@ angular.module('core').service('Hotspot', ['$rootScope', 'HotspotsService', 'Aut
       // vm.error = res.data.message;
       console.log(res);
     }
-
   }
 ]);
