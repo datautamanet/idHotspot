@@ -55,17 +55,13 @@ angular.module('core').service('Hotspot', ['$rootScope', '$scope', 'HotspotsServ
         } else {
           offlineInetState();
         }
-        // $http.get('//api.ipify.org?format=jsonp&callback=?').then(function (data) {
-        //   // console.log(JSON.stringify(data, null, 2));
-        //   console.log(data.data);
-        // }, function (data) {
-        //   console.log(data);
-        // });
+
         $.getJSON('//api.ipify.org?format=jsonp&callback=?', function(data) {
           $rootScope.clientIp = data.ip;
         });
+
         $http.get('api/nodes/ip/' + $rootScope.clientIp).then(function successCallback(response) {
-          $scope.$apply(function () {
+          $rootScope.$apply(function () {
             $rootScope.nodes = response.data[0];
           });
         }, function errorCallback(response) {
