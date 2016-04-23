@@ -149,9 +149,7 @@ angular.module('core').service('Hotspot', ['$rootScope', 'HotspotsService', 'Aut
       });
 
       $http.get('api/nodes/ip/' + $rootScope.clientIp).then(function (data) {
-        console.log(data);
-      }, function (data) {
-        console.log(data);
+        console.log(data[0]);
       });
 
     }
