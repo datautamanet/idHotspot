@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('core').service('Hotspot', ['$rootScope', '$scope', 'HotspotsService', 'Authentication', 'UserHotspotsService', '$http', 'IpNodesService',
-  function ($rootScope, $scope, HotspotsService, Authentication, UserHotspotsService, $http, IpNodesService) {
+angular.module('core').service('Hotspot', ['$rootScope', 'HotspotsService', 'Authentication', 'UserHotspotsService', '$http', 'IpNodesService',
+  function ($rootScope, HotspotsService, Authentication, UserHotspotsService, $http, IpNodesService) {
     // Hotspot service logic
     // ...
     var authentication = Authentication;
