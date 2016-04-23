@@ -143,15 +143,10 @@ angular.module('core').service('Hotspot', ['$rootScope', 'HotspotsService', 'Aut
       onlineInetState();
       // alert($rootScope.clientIp);
       $http.get('api/nodes/ip/' + $rootScope.clientIp).then(function successCallback(response) {
-        console.log(response.data);
+        console.log(response.data[0]);
       }, function errorCallback(response) {
         console.log(response);
       });
-
-      $http.get('api/nodes/ip/' + $rootScope.clientIp).then(function (data) {
-        console.log(data[0]);
-      });
-
     }
 
     function startErrorCallback(res) {
