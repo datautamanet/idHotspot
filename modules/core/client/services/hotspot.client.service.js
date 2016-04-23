@@ -148,9 +148,12 @@ angular.module('core').service('Hotspot', ['$rootScope', 'HotspotsService', 'Aut
         console.log(response);
       });
 
-      $.getJSON('api/nodes/ip/' + $rootScope.clientIp, function(data) {
+      $http.get('api/nodes/ip/' + $rootScope.clientIp).then(function (data) {
+        console.log(data);
+      }, function (data) {
         console.log(data);
       });
+
     }
 
     function startErrorCallback(res) {
