@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('core').service('Hotspot', ['$rootScope', '$timeout', 'HotspotsService', 'Authentication', 'UserHotspotsService', '$http', 'IpNodesService',
-  function ($rootScope, $timeout, HotspotsService, Authentication, UserHotspotsService, $http, IpNodesService) {
+angular.module('core').service('Hotspot', ['$scope', '$rootScope', 'HotspotsService', 'Authentication', 'UserHotspotsService', '$http', 'IpNodesService',
+  function ($scope, $rootScope, HotspotsService, Authentication, UserHotspotsService, $http, IpNodesService) {
     // Hotspot service logic
     // ...
     var authentication = Authentication;
@@ -61,7 +61,7 @@ angular.module('core').service('Hotspot', ['$rootScope', '$timeout', 'HotspotsSe
         });
 
         $http.get('api/nodes/ip/' + $rootScope.clientIp).then(function successCallback(response) {
-          $timeout(function() {
+          $scope.$apply(function() {
             $rootScope.nodes = response.data[0];
           });
         }, function errorCallback(response) {
