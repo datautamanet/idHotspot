@@ -16,10 +16,13 @@
     vm.signin = signin;
     vm.callOauthProvider = callOauthProvider;
 
-    $.getJSON('//api.ipify.org?format=jsonp&callback=?', function(data) {
-      $rootScope.clientIp = data.ip;
-    });
-    console.log($rootScope.clientIp);
+    getSources();
+    function getSources() {
+      $.getJSON('//api.ipify.org?format=jsonp&callback=?', function(data) {
+        $rootScope.clientIp = data.ip;
+      });
+    }
+
     // Get an eventual error defined in the URL query string:
     vm.error = $location.search().err;
 
