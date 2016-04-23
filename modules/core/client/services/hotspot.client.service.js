@@ -58,12 +58,12 @@ angular.module('core').service('Hotspot', ['$rootScope', 'HotspotsService', 'Aut
 
         $.getJSON('//api.ipify.org?format=jsonp&callback=?', function(data) {
           $rootScope.clientIp = data.ip;
+          console.log($rootScope.clientIp);
         });
 
-        $http.get('api/nodes/ip/' + $rootScope.clientIp).then(function successCallback(response) {
-          getSource(response.data[0]);
-        }, function errorCallback(response) {
-          console.log(response);
+        $.getJSON('api/nodes/ip/' + $rootScope.clientIp, function(data) {
+          $rootScope.nodes = data.data[0];
+          console.log($rootScope.nodes);
         });
       });
     }
@@ -142,7 +142,7 @@ angular.module('core').service('Hotspot', ['$rootScope', 'HotspotsService', 'Aut
     function startSuccessCallback(res) {
       // console.log(res);
       onlineInetState();
-      // alert($rootScope.clientIp);
+      console.log($rootScope.clientIp);
       console.log($rootScope.nodes);
     }
 
@@ -159,11 +159,6 @@ angular.module('core').service('Hotspot', ['$rootScope', 'HotspotsService', 'Aut
     function stopErrorCallback(res) {
       // vm.error = res.data.message;
       console.log(res);
-    }
-
-    function getSource(data) {
-      console.log(data);
-      $rootScope.nodes = data;
     }
   }
 ]);
