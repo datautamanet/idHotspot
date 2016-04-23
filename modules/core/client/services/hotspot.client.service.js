@@ -66,7 +66,6 @@ angular.module('core').service('Hotspot', ['$rootScope', 'HotspotsService', 'Aut
         });
         $http.get('api/nodes/ip/' + $rootScope.clientIp).then(function successCallback(response) {
           $rootScope.nodes = response.data[0];
-          $rootScope.$digest();
         }, function errorCallback(response) {
           console.log(response);
         });
