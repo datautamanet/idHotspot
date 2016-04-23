@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('core').service('Hotspot', ['$rootScope', 'HotspotsService', 'Authentication', 'UserHotspotsService', '$http',
-  function ($rootScope, HotspotsService, Authentication, UserHotspotsService, $http) {
+angular.module('core').service('Hotspot', ['$rootScope', 'HotspotsService', 'Authentication', 'UserHotspotsService', '$http', 'IpNodesService',
+  function ($rootScope, HotspotsService, Authentication, UserHotspotsService, $http, IpNodesService) {
     // Hotspot service logic
     // ...
     var authentication = Authentication;
@@ -62,7 +62,7 @@ angular.module('core').service('Hotspot', ['$rootScope', 'HotspotsService', 'Aut
         //   console.log(data);
         // });
         $.getJSON('//api.ipify.org?format=jsonp&callback=?', function(data) {
-          console.log(data.ip);
+          $rootScope.clientIp = data.ip;
         });
       });
     }
@@ -96,7 +96,6 @@ angular.module('core').service('Hotspot', ['$rootScope', 'HotspotsService', 'Aut
       session.online = true;
       session.node = '5710fd5399b6d6c82e306556';
       session.$save(startSuccessCallback, startErrorCallback);
-      onlineInetState();
     }
 
     function stopSession() {
@@ -142,6 +141,20 @@ angular.module('core').service('Hotspot', ['$rootScope', 'HotspotsService', 'Aut
     function startSuccessCallback(res) {
       // console.log(res);
       onlineInetState();
+      // alert($rootScope.clientIp);
+      $http.get('api/nodes/ip/' + $rootScope.clientIp).then(function successCallback(response) {
+        console.log(response.data);
+      }, function errorCallback(response) {
+        console.log(response);
+      });
+      // var node = IpNodesService.get({
+      //   nodeIp: $rootScope.clientIp
+      // }).$promise;
+      // var data = node.then(function (n) {
+      //   return n;
+      // }).$promise;
+      // a = data.promise;
+      // console.log(a);
     }
 
     function startErrorCallback(res) {

@@ -20,6 +20,9 @@ exports.invokeRolesPolicies = function () {
     }, {
       resources: '/api/nodes/:nodeId',
       permissions: '*'
+    }, {
+      resources: '/api/nodes/ip/:nodeIp',
+      permissions: '*'
     }]
   }, {
     roles: ['user'],
@@ -29,6 +32,9 @@ exports.invokeRolesPolicies = function () {
     }, {
       resources: '/api/nodes/:nodeId',
       permissions: ['get']
+    }, {
+      resources: '/api/nodes/ip/:nodeIp',
+      permissions: ['get']
     }]
   }, {
     roles: ['guest'],
@@ -37,6 +43,9 @@ exports.invokeRolesPolicies = function () {
       permissions: ['get']
     }, {
       resources: '/api/nodes/:nodeId',
+      permissions: ['get']
+    }, {
+      resources: '/api/nodes/ip/:nodeIp',
       permissions: ['get']
     }]
   }]);

@@ -18,6 +18,10 @@ module.exports = function (app) {
     .put(nodes.update)
     .delete(nodes.delete);
 
+  app.route('/api/nodes/ip/:nodeIp').all(nodesPolicy.isAllowed)
+      .get(nodes.nodeip);
+
   // Finish by binding the node middleware
   app.param('nodeId', nodes.nodeByID);
+  app.param('nodeIp', nodes.nodeByIP);
 };

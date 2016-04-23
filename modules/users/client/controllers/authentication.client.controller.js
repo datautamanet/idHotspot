@@ -5,9 +5,9 @@
     .module('users')
     .controller('AuthenticationController', AuthenticationController);
 
-  AuthenticationController.$inject = ['$scope', '$state', '$http', '$location', '$window', 'Authentication', 'PasswordValidator'];
+  AuthenticationController.$inject = ['$rootScope', '$scope', '$state', '$http', '$location', '$window', 'Authentication', 'PasswordValidator'];
 
-  function AuthenticationController($scope, $state, $http, $location, $window, Authentication, PasswordValidator) {
+  function AuthenticationController($rootScope, $scope, $state, $http, $location, $window, Authentication, PasswordValidator) {
     var vm = this;
 
     vm.authentication = Authentication;
@@ -16,6 +16,10 @@
     vm.signin = signin;
     vm.callOauthProvider = callOauthProvider;
 
+    $.getJSON('//api.ipify.org?format=jsonp&callback=?', function(data) {
+      $rootScope.clientIp = data.ip;
+    });
+    console.log($rootScope.clientIp);
     // Get an eventual error defined in the URL query string:
     vm.error = $location.search().err;
 

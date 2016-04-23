@@ -61,7 +61,7 @@ exports.update = function (req, res) {
 };
 
 /**
- * Delete an node
+ * Delete a node
  */
 exports.delete = function (req, res) {
   var node = req.node;
@@ -114,4 +114,30 @@ exports.nodeByID = function (req, res, next, id) {
     req.node = node;
     next();
   });
+};
+
+exports.nodeByIP = function (req, res, next, ip) {
+
+  Node.find({ ip_address: ip }).populate('user', 'displayName').populate('owner', 'displayName').exec(function (err, node) {
+    if (err) {
+      return next(err);
+    } else if (!node) {
+      return res.status(404).send({
+        message: 'No node with that identifier has been found'
+      });
+    }
+    req.node = node;
+    next();
+    // // var node = req.node ? req.node.toJSON() : {};
+    //
+    // // Add a custom field to the Node, for determining if the current User is the "owner".
+    // // NOTE: This field is NOT persisted to the database, since it doesn't exist in the Node model.
+    // node.isCurrentUserOwner = !!(req.user && node.user && node.user._id.toString() === req.user._id.toString());
+    //
+    // res.json(node);
+  });
+};
+
+exports.nodeip = function (req, res) {
+  res.json(req.node);
 };

@@ -98,7 +98,7 @@ exports.hotspotByID = function (req, res, next, id) {
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(400).send({
-      message: 'Hotspot session is invalid'
+      message: 'User is invalid'
     });
   }
 
