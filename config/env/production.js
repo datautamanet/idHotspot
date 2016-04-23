@@ -3,8 +3,8 @@
 module.exports = {
   secure: {
     ssl: true,
-    privateKey: './config/sslcerts/datautama.key',
-    certificate: './config/sslcerts/STAR_datautama_net_id.crt'
+    privateKey: './config/sslcerts/key.pem',
+    certificate: './config/sslcerts/cert.pem'
   },
   port: process.env.PORT || 80,
   // Binding to 127.0.0.1 is safer in production.
