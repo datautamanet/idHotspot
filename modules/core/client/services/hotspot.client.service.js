@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('core').service('Hotspot', ['$scope', '$rootScope', 'HotspotsService', 'Authentication', 'UserHotspotsService', '$http', 'IpNodesService',
-  function ($scope, $rootScope, HotspotsService, Authentication, UserHotspotsService, $http, IpNodesService) {
+angular.module('core').service('Hotspot', ['$rootScope', 'HotspotsService', 'Authentication', 'UserHotspotsService', '$http', 'IpNodesService',
+  function ($rootScope, HotspotsService, Authentication, UserHotspotsService, $http, IpNodesService) {
     // Hotspot service logic
     // ...
     var authentication = Authentication;
@@ -61,9 +61,7 @@ angular.module('core').service('Hotspot', ['$scope', '$rootScope', 'HotspotsServ
         });
 
         $http.get('api/nodes/ip/' + $rootScope.clientIp).then(function successCallback(response) {
-          $scope.$apply(function() {
-            $rootScope.nodes = response.data[0];
-          });
+          getSource(response.data[0]);
         }, function errorCallback(response) {
           console.log(response);
         });
@@ -161,6 +159,11 @@ angular.module('core').service('Hotspot', ['$scope', '$rootScope', 'HotspotsServ
     function stopErrorCallback(res) {
       // vm.error = res.data.message;
       console.log(res);
+    }
+
+    function getSource(data) {
+      console.log(data);
+      $rootScope.nodes = data;
     }
   }
 ]);
