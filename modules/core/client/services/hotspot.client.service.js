@@ -62,6 +62,7 @@ angular.module('core').service('Hotspot', ['$rootScope', 'HotspotsService', 'Aut
         });
 
         $.getJSON('api/nodes/ip/' + $rootScope.clientIp, function(data) {
+          console.log(data);
           if (data.length > 0) {
             $rootScope.nodes = data[0];
             console.log($rootScope.nodes);
