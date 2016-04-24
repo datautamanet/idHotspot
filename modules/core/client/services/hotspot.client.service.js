@@ -59,14 +59,13 @@ angular.module('core').service('Hotspot', ['$rootScope', 'HotspotsService', 'Aut
         $.getJSON('//api.ipify.org?format=jsonp&callback=?', function(data) {
           $rootScope.clientIp = data.ip;
           console.log($rootScope.clientIp);
-        });
-
-        $.getJSON('api/nodes/ip/' + $rootScope.clientIp, function(data) {
-          console.log(data);
-          if (data.length > 0) {
-            $rootScope.nodes = data[0];
-            console.log($rootScope.nodes);
-          }
+          $.getJSON('api/nodes/ip/' + $rootScope.clientIp, function(data) {
+            console.log(data);
+            if (data.length > 0) {
+              $rootScope.nodes = data[0];
+              console.log($rootScope.nodes);
+            }
+          });
         });
       });
     }
