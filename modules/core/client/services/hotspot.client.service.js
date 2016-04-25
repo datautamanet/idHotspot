@@ -92,22 +92,13 @@ angular.module('core').service('Hotspot', ['$rootScope', 'HotspotsService', 'Aut
     };
 
     function startSession() {
-      $.getJSON('//api.ipify.org?format=jsonp&callback=?', function(data) {
-        $rootScope.clientIp = data.ip;
-        console.log($rootScope.clientIp);
-        $.getJSON('api/nodes/ip/' + $rootScope.clientIp, function(data) {
-          if (data.length > 0) {
-            var node = data[0];
-            var session = new HotspotsService();
-            session.user = authentication.user;
-            session.session_time = 1440; // 60*24hrs
-            session.online = true;
-            session.node = node ? node._id : null;
-            console.log(node);
-            session.$save(startSuccessCallback, startErrorCallback);
-          }
-        });
-      });
+      var session = new HotspotsService();
+      session.user = authentication.user;
+      session.session_time = 1440; // 60*24hrs
+      session.online = true;
+      console.log($rootScope.nodes);
+      session.node = $rootScope.nodes ? $rootScope.nodes._id : null;
+      session.$save(startSuccessCallback, startErrorCallback);
     }
 
     function stopSession() {
