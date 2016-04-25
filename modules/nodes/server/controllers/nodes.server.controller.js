@@ -50,7 +50,7 @@ exports.update = function (req, res) {
   node.ip_address = req.body.ip_address;
   node.secret = req.body.secret;
   node.owner = req.body.owner ? req.body.owner : '';
-  node.updated = new Date.now();
+  node.updated = Date.now();
 
   node.save(function (err) {
     if (err) {
