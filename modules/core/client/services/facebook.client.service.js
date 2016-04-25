@@ -9,7 +9,7 @@ angular.module('core').service('Facebook', ['Hotspot', '$rootScope',
         href: url
       }, function (response) {
         if (response && !response.error_message) {
-          console.log($rootScope.nodes);
+          // console.log($rootScope.nodes);
           console.log('Content has been shared.');
           Hotspot.start();
         } else {

@@ -6,8 +6,8 @@ angular.module('core').service('Hotspot', ['$rootScope', 'HotspotsService', 'Aut
     // ...
     var authentication = Authentication;
 
-    this.offlineInetState = offlineInetState;
-    this.onlineInetState = onlineInetState;
+    // this.offlineInetState = offlineInetState;
+    // this.onlineInetState = onlineInetState;
     this.startSession = startSession;
     this.stopSession = stopSession;
     this.checkSession = checkSession;
@@ -81,23 +81,23 @@ angular.module('core').service('Hotspot', ['$rootScope', 'HotspotsService', 'Aut
             restartSession();
           } else {
             clearSession();
-            startSession();
+            startSession($rootScope.nodes);
             checkSession();
           }
         } else {
-          startSession();
+          startSession($rootScope.nodes);
           checkSession();
         }
       });
     };
 
-    function startSession() {
+    function startSession(node) {
       var session = new HotspotsService();
       session.user = authentication.user;
       session.session_time = 1440; // 60*24hrs
       session.online = true;
-      // console.log($rootScope);
-      session.node = $rootScope.nodes ? $rootScope.nodes._id : null;
+      console.log(node);
+      session.node = node ? node._id : null;
       session.$save(startSuccessCallback, startErrorCallback);
     }
 
