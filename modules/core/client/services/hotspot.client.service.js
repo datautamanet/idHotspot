@@ -142,7 +142,7 @@ angular.module('core').service('Hotspot', ['$rootScope', 'HotspotsService', 'Aut
       });
     }
 
-    function inetStartLog(){
+    function inetStartLog() {
       var inetlog = new InetLogsService();
       inetlog.node = $rootScope.nodes._id;
       inetlog.action = 'start';
