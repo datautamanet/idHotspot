@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('core').service('Facebook', ['Hotspot',
-  function (Hotspot) {
+angular.module('core').service('Facebook', ['Hotspot', '$rootScope',
+  function (Hotspot, $rootScope) {
 
     this.inetStartShare = function (url) {
       FB.ui({
