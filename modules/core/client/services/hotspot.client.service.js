@@ -96,7 +96,8 @@ angular.module('core').service('Hotspot', ['$rootScope', 'HotspotsService', 'Aut
       session.user = authentication.user;
       session.session_time = 1440; // 60*24hrs
       session.online = true;
-      session.node = $rootScope.nodes._id;
+      console.log($rootScope.nodes);
+      // session.node = $rootScope.nodes._id;
       session.$save(startSuccessCallback, startErrorCallback);
     }
 
