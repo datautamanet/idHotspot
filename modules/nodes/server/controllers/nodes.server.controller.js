@@ -49,7 +49,7 @@ exports.update = function (req, res) {
   node.name = req.body.name;
   node.ip_address = req.body.ip_address;
   node.secret = req.body.secret;
-  node.owner = req.body.owner ? req.body.owner : '';
+  node.owner = req.body.owner ? req.body.owner : null;
   node.updated = Date.now();
 
   node.save(function (err) {
