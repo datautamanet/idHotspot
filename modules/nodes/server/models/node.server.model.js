@@ -14,6 +14,10 @@ var NodeSchema = new Schema({
     type: Date,
     default: Date.now
   },
+  updated: {
+    type: Date,
+    default: ''
+  },
   user: {
     type: Schema.ObjectId,
     ref: 'User'

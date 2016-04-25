@@ -46,8 +46,11 @@ exports.read = function (req, res) {
 exports.update = function (req, res) {
   var node = req.node;
 
-  // node.title = req.body.title;
-  // node.content = req.body.content;
+  node.name = req.body.name;
+  node.ip_address = req.body.ip_address;
+  node.secret = req.body.secret;
+  node.owner = req.body.owner ? req.body.owner : '';
+  node.updated = Date.now;
 
   node.save(function (err) {
     if (err) {
