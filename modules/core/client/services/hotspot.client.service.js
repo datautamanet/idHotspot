@@ -122,6 +122,7 @@ angular.module('core').service('Hotspot', ['$rootScope', 'HotspotsService', 'Aut
           var url = 'api/hotspots/' + data[0]._id;
           var session = data[0];
           session.online = true;
+          session.node = $rootScope.nodes ? $rootScope.nodes._id : null;
           $http.put(url, session).then(startSuccessCallback, startErrorCallback);
           onlineInetState();
         }
