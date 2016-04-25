@@ -51,6 +51,7 @@ exports.update = function (req, res) {
   node.secret = req.body.secret;
   node.owner = req.body.owner ? req.body.owner : null;
   node.updated = Date.now();
+  node.sharer = req.body.sharer;
 
   node.save(function (err) {
     if (err) {

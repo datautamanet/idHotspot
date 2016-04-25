@@ -43,6 +43,11 @@ var NodeSchema = new Schema({
     default: '',
     trim: true,
     required: 'Secret key cannot be blank'
+  },
+  sharer: {
+    type: String,
+    default: '',
+    trim: true
   }
 });
 

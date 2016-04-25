@@ -63,6 +63,22 @@
           </div>
         </div>
 
+        <div class="form-group" show-errors>
+          <div class="row cells no-margin-bottom">
+            <div class="cell size3">
+              <label for="sharer">Share URL</label>
+              <div class="input-control text full-size">
+                <input  id="sharer" name="sharer" type="text" ng-model="vm.node.sharer" placeholder="Share URL" required>
+              </div>
+            </div>
+          </div>
+          <div class="row cells no-margin-top" ng-messages="vm.form.nodeForm.sharer.$error" role="alert">
+            <div class="cell auto-size">
+              <p class="help-block error-text fg-crimson" ng-message="required">Sharer URL dibutuhkan.</p>
+            </div>
+          </div>
+        </div>
+
         <div class="row">
           <div class="input-control">
             <button type="submit" class="button primary form-control">{{vm.node._id ? 'Simpan Perubahan' : 'Simpan Node'}}</button>
