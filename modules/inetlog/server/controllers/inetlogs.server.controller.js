@@ -46,8 +46,8 @@ exports.read = function (req, res) {
 exports.update = function (req, res) {
   var inetlog = req.inetlog;
 
-  inetlog.user = req.body.user;
   inetlog.node = req.body.node;
+  inetlog.action = req.body.action;
   inetlog.updated = Date.now();
 
   inetlog.save(function (err) {

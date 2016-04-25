@@ -25,6 +25,10 @@ var InetLogSchema = new Schema({
   node: {
     type: Schema.ObjectId,
     ref: 'Node'
+  },
+  action: {
+    type: String,
+    default: ''
   }
 });
 

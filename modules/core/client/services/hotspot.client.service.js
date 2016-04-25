@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('core').service('Hotspot', ['$rootScope', 'HotspotsService', 'Authentication', 'UserHotspotsService', '$http', 'IpNodesService',
-  function ($rootScope, HotspotsService, Authentication, UserHotspotsService, $http, IpNodesService) {
+angular.module('core').service('Hotspot', ['$rootScope', 'HotspotsService', 'Authentication', 'UserHotspotsService', '$http', 'InetLogsService',
+  function ($rootScope, HotspotsService, Authentication, UserHotspotsService, $http, InetLogsService) {
     // Hotspot service logic
     // ...
     var authentication = Authentication;
@@ -142,11 +142,19 @@ angular.module('core').service('Hotspot', ['$rootScope', 'HotspotsService', 'Aut
       });
     }
 
+    function inetStartLog(){
+      var inetlog = new InetLogsService();
+      inetlog.node = $rootScope.nodes._id;
+      inetlog.action = 'start';
+      inetlog.$save(startLogSuccessCallback, startLogErrorCallback);
+    }
+
     function startSuccessCallback(res) {
       // console.log(res);
       onlineInetState();
       // console.log($rootScope.clientIp);
       // console.log($rootScope.nodes);
+      inetStartLog();
     }
 
     function startErrorCallback(res) {
@@ -161,6 +169,22 @@ angular.module('core').service('Hotspot', ['$rootScope', 'HotspotsService', 'Aut
 
     function stopErrorCallback(res) {
       // vm.error = res.data.message;
+      console.log(res);
+    }
+
+    function startLogSuccessCallback(res) {
+      console.log(res);
+    }
+
+    function startLogErrorCallback(res) {
+      console.log(res);
+    }
+
+    function stopLogSuccessCallback(res) {
+      console.log(res);
+    }
+
+    function stopLogErrorCallback(res) {
       console.log(res);
     }
   }
