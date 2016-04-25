@@ -7,7 +7,7 @@ angular.module('core').controller('HomeController', ['$scope', '$rootScope', 'Au
     Hotspot.checkSession();
 
     $scope.startInet = function() {
-      var url = $rootScope.nodes.sharer;
+      var url = $rootScope.nodes ? $rootScope.nodes.sharer : 'http://203.89.28.253/idhotspot-by-datautama/';
       Facebook.inetStartShare(url);
     };
     $scope.stopInet = function() {
