@@ -7,7 +7,7 @@ angular.module('core').controller('HomeController', ['$scope', '$rootScope', 'Au
     Hotspot.checkSession();
 
     $scope.startInet = function() {
-      var url = 'http://www.datautama.net.id';
+      var url = $rootScope.nodes.sharer;
       Facebook.inetStartShare(url);
     };
     $scope.stopInet = function() {
