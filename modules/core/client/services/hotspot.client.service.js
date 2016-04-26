@@ -172,7 +172,7 @@ angular.module('core').service('Hotspot', ['$rootScope', 'HotspotsService', 'Aut
     function stopSuccessCallback(res) {
       // console.log(res);
       offlineInetState();
-      inetStopLog()
+      inetStopLog();
     }
 
     function stopErrorCallback(res) {
