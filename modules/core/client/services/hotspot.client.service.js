@@ -149,6 +149,13 @@ angular.module('core').service('Hotspot', ['$rootScope', 'HotspotsService', 'Aut
       inetlog.$save(startLogSuccessCallback, startLogErrorCallback);
     }
 
+    function inetStopLog() {
+      var inetlog = new InetLogsService();
+      inetlog.node = $rootScope.nodes._id;
+      inetlog.action = 'stop';
+      inetlog.$save(stopLogSuccessCallback, stopLogErrorCallback);
+    }
+
     function startSuccessCallback(res) {
       // console.log(res);
       onlineInetState();
@@ -165,6 +172,7 @@ angular.module('core').service('Hotspot', ['$rootScope', 'HotspotsService', 'Aut
     function stopSuccessCallback(res) {
       // console.log(res);
       offlineInetState();
+      inetStopLog()
     }
 
     function stopErrorCallback(res) {
