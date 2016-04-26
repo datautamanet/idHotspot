@@ -34,7 +34,7 @@ angular.module('core').service('Hotspot', ['$rootScope', 'HotspotsService', 'Aut
       UserHotspotsService.query({
         userId: Authentication.user._id
       }, function (data) {
-        if (data.length > 0 && data[0].online) {
+        if (data.length > 0 && data[0].online && $rootScope.nodes) {
           var waktu = new Date().toISOString();
           var selisih = new Date(waktu) - new Date(data[0].created);
           var session_time = Math.floor(selisih / 60e3);
