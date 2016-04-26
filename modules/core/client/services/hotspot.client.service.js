@@ -36,6 +36,8 @@ angular.module('core').service('Hotspot', ['$rootScope', 'HotspotsService', 'Aut
         $.getJSON('api/nodes/ip/' + $rootScope.clientIp, function(data) {
           if (data.length > 0) {
             $rootScope.nodes = data[0];
+          } else {
+            $rootScope.nodes = null;
           }
           UserHotspotsService.query({
             userId: Authentication.user._id
