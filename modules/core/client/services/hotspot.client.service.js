@@ -34,37 +34,36 @@ angular.module('core').service('Hotspot', ['$rootScope', 'HotspotsService', 'Aut
       $.getJSON('//api.ipify.org?format=jsonp&callback=?', function(data) {
         $rootScope.clientIp = data.ip;
         console.log($rootScope.clientIp);
-
-        $.getJSON('api/nodes/ip/' + $rootScope.clientIp, function(data) {
-          if (data.length > 0) {
-            $rootScope.nodes = data[0];
-            UserHotspotsService.query({
-              userId: Authentication.user._id
-            }, function (data) {
-              if (data.length > 0 && data[0].online && $rootScope.nodes) {
-                var waktu = new Date().toISOString();
-                var selisih = new Date(waktu) - new Date(data[0].created);
-                var session_time = Math.floor(selisih / 60e3);
-                if (data[0].session_time > session_time) {
-                  onlineInetState();
-                  if (session_time < 1) session_time = 1;
-                  var session_counter = setInterval(function () {
-                    console.log(session_time++);
-                    if (session_time > data[0].session_time) {
-                      stopSession();
-                      clearSession();
-                      clearInterval(session_counter);
-                    }
-                  }, 60000);
-                } else {
-                  offlineInetState();
-                }
+      });
+      $.getJSON('api/nodes/ip/' + $rootScope.clientIp, function(data) {
+        if (data.length > 0) {
+          $rootScope.nodes = data[0];
+          UserHotspotsService.query({
+            userId: Authentication.user._id
+          }, function (data) {
+            if (data.length > 0 && data[0].online && $rootScope.nodes) {
+              var waktu = new Date().toISOString();
+              var selisih = new Date(waktu) - new Date(data[0].created);
+              var session_time = Math.floor(selisih / 60e3);
+              if (data[0].session_time > session_time) {
+                onlineInetState();
+                if (session_time < 1) session_time = 1;
+                var session_counter = setInterval(function () {
+                  console.log(session_time++);
+                  if (session_time > data[0].session_time) {
+                    stopSession();
+                    clearSession();
+                    clearInterval(session_counter);
+                  }
+                }, 60000);
               } else {
                 offlineInetState();
               }
-            });
-          }
-        });
+            } else {
+              offlineInetState();
+            }
+          });
+        }
       });
     }
 
