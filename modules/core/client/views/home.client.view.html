@@ -1,6 +1,6 @@
 <section ng-controller="HomeController">
-  <h1 class="text-light">Dashboard <span class="mif-home place-right"></span></h1>
-  <hr class="thin bg-grayLighter">
+  <h1 ng-if="authentication.user" class="text-light">Dashboard <span class="mif-home place-right"></span></h1>
+  <hr ng-if="authentication.user" class="thin bg-grayLighter">
   <div class="flex-grid">
     <div class="row flex-dir-row flex-wrap cells3">
       <div class="cell auto-size">
@@ -20,7 +20,7 @@
       </div>
       <div ng-if="!authentication.user" class="cell auto-size">
         <div class="row">
-          <button class="image-button bg-darkBlue fg-white" ng-click="vm.callOauthProvider('/api/auth/facebook')">
+          <button class="image-button bg-darkBlue fg-white" onclick="window.location.href = '/api/auth/facebook'">
             Masuk dengan akun Facebook
             <span class="icon mif-facebook bg-darkBlue"></span>
           </button>
