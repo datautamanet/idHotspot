@@ -4,7 +4,7 @@ angular.module('core').controller('HomeController', ['$scope', '$rootScope', 'Au
   function ($scope, $rootScope, Authentication, $state, $window, Facebook, Hotspot, Socket) {
     $scope.authentication = Authentication;
 
-    if ($scope.authentication) {
+    if ($scope.authentication.user) {
       Hotspot.checkSession();
 
       $scope.startInet = function() {
