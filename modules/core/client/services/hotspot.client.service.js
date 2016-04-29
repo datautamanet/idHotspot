@@ -42,7 +42,7 @@ angular.module('core').service('Hotspot', ['$rootScope', 'HotspotsService', 'Aut
           UserHotspotsService.query({
             userId: Authentication.user._id
           }, function (data) {
-            console.log($rootScope.nodes);
+            // console.log($rootScope.nodes);
             if (data.length > 0 && data[0].online && $rootScope.nodes) {
               var waktu = new Date().toISOString();
               var selisih = new Date(waktu) - new Date(data[0].created);

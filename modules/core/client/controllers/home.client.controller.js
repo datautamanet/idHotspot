@@ -4,14 +4,16 @@ angular.module('core').controller('HomeController', ['$scope', '$rootScope', 'Au
   function ($scope, $rootScope, Authentication, $state, $window, Facebook, Hotspot, Socket) {
     $scope.authentication = Authentication;
 
-    Hotspot.checkSession();
+    if ($scope.authentication) {
+      Hotspot.checkSession();
 
-    $scope.startInet = function() {
-      var url = $rootScope.nodes ? $rootScope.nodes.sharer : 'http://203.89.28.253/idhotspot-by-datautama/';
-      Facebook.inetStartShare(url);
-    };
-    $scope.stopInet = function() {
-      Hotspot.stopSession();
-    };
+      $scope.startInet = function() {
+        var url = $rootScope.nodes ? $rootScope.nodes.sharer : 'http://idbillboard.datautama.net.id/idhotspot-by-datautama/';
+        Facebook.inetStartShare(url);
+      };
+      $scope.stopInet = function() {
+        Hotspot.stopSession();
+      };
+    }
   }
 ]);

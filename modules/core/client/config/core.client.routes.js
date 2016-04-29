@@ -28,7 +28,7 @@ angular.module('core').config(['$stateProvider', '$urlRouterProvider',
         url: '/',
         templateUrl: 'modules/core/client/views/home.client.view.html',
         data: {
-          roles: ['user'],
+          // roles: ['user'],
           pageTitle: 'Dashboard'
         }
       })
